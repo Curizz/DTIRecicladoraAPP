@@ -1,0 +1,7 @@
+{
+  "name": "RecicladoraDTI",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
