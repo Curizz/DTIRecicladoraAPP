@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Agregar Usuario</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-padding">
+  <form [formGroup]="FomularioUsers" (ngSubmit)="enviarDatos()">
+    <ion-item>
+      <ion-label position="stacked">Nombre</ion-label>
+     <ion-input required="true"  formControlName="Nombre"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Apellido Paterno</ion-label>
+     <ion-input required="true"formControlName="ApellidoPaterno"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="stacked">Apellido Materno</ion-label>
+     <ion-input required="true" type="tel" formControlName="ApellidoMaterno"></ion-input>
+
+    </ion-item>
+        
+    <ion-item>
+      <ion-label position="stacked">Correo Electronico</ion-label>
+     <ion-input required="true" type="email" formControlName="Correo"></ion-input>
+    </ion-item>
+    
+          
+    <ion-item>
+      <ion-label position="stacked">Domicilio</ion-label>
+     <ion-input required="true" formControlName="Domicilio"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Contraseña</ion-label>
+     <ion-input required="true"  formControlName="Pass"></ion-input>
+    </ion-item>
+
+    <ion-radio-group name="practicanteGroup" formControlName="Practicante">
+      <ion-item lines="none" style="display: flex; align-items: center;">
+        <ion-label style="font-size: medium;">practicante?</ion-label>
+        <ion-radio value="Si" style="margin-left: 10px;"></ion-radio>
+        <ion-label style="font-size: medium; margin-right: 10px;">Si</ion-label>
+        <ion-radio value="No" style="margin-left: 20px;"></ion-radio>
+        <ion-label style="font-size: medium;">No</ion-label>
+      </ion-item>
+    </ion-radio-group>
+
+    
+    <ion-item>
+      <ion-label position="stacked">Puesto</ion-label>
+      <ion-select formControlName="idAsignacion">
+        <ion-select-option value="0"> </ion-select-option>
+        <ion-select-option *ngFor="let puesto of puestos" [value]="puesto.idAsignacion">{{ puesto.Puesto }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Sueldo</ion-label>
+     <ion-input required="true" formControlName="Sueldo"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Turno</ion-label>
+      <ion-select formControlName="Turno">
+        <ion-select-option value="Sin Turno"> </ion-select-option>
+        <ion-select-option value="Matutino">Matutino</ion-select-option>
+        <ion-select-option value="Vespertino">Vespertino</ion-select-option>
+        <ion-select-option value="Nocturno">Nocturno</ion-select-option>
+      </ion-select>
+    </ion-item>
+    
+    
+      
+    <ion-item>
+      <ion-label position="stacked">Area</ion-label>
+      <ion-select formControlName="idArea">
+        <ion-select-option value="0"> </ion-select-option>
+        <ion-select-option *ngFor="let area of areas" [value]="area.idArea">{{ area.NombreArea }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    
+    
+    <ion-row class="ion-padding-top">
+      <ion-col>
+        <ion-button type="submit" expand="full" color="success">AGREGAR</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="cancelar()" expand="full" color="danger">CANCELAR</ion-button>
+      </ion-col>
+    </ion-row>
+
+  </form>
+</ion-content>
+

@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Editar Proveedor</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content  class="ion-padding" >
+
+  <form [formGroup]="formularioProveedores" (ngSubmit)="enviarDatos()">
+    <ion-item>
+      <ion-label position="stacked">Nombre de Proveedor</ion-label>
+     <ion-input required="true"  formControlName="NombreProveedor"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Dirección de Proveedor</ion-label>
+     <ion-input required="true"formControlName="DireccionProveedor"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="stacked">Teléfono</ion-label>
+     <ion-input required="true" type="tel" formControlName="Telefono"></ion-input>
+
+    </ion-item>
+        
+    <ion-item>
+      <ion-label position="stacked">Correo</ion-label>
+     <ion-input required="true" type="email" formControlName="Correo"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="stacked">Producto</ion-label>
+      <ion-select formControlName="idInventarioFabrica">
+        <ion-select-option *ngFor="let inventariosFabrica of inventariosFabrica" [value]="inventariosFabrica.idInventarioFabrica">{{ inventariosFabrica.NombreInsumo }}</ion-select-option>
+      </ion-select>
+
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">RFC</ion-label>
+     <ion-input required="true"  formControlName="RFCProveedor"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Descripción</ion-label>
+     <ion-input required="true"  formControlName="DescripcionProveedor"></ion-input>
+    </ion-item>
+    <ion-row class="ion-padding-top">
+      <ion-col>
+        <ion-button type="submit" expand="full" color="success">AGREGAR</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="cancelar()" expand="full" color="danger">CANCELAR</ion-button>
+      </ion-col>
+    </ion-row>
+
+  </form>
+</ion-content>

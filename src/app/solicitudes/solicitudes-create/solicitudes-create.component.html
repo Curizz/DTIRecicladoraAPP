@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Solicitudes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="formularioSolicitud" (ngSubmit)="enviarDatos()">
+    <ion-item>
+      <ion-label position="stacked">Nombre del Producto</ion-label>
+     <ion-input   formControlName="nombreProducto"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Peso</ion-label>
+     <ion-input  type="number" formControlName="Peso"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="stacked">Dimensiones</ion-label>
+     <ion-input  type="" formControlName="Dimensiones"></ion-input>
+    </ion-item>
+      
+    <ion-item>
+      <ion-label position="stacked">Fecha Petición</ion-label>
+     <ion-input  type="date" formControlName="FechaPeticion"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Calibre</ion-label>
+     <ion-input  formControlName="Calibre"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="stacked">Proveedor</ion-label>
+      <ion-select formControlName="idProveedor">
+        <ion-select-option *ngFor="let proveedor of proveedor" [value]="proveedor.idProveedor">{{ proveedor.NombreProveedor }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="stacked">Composición</ion-label>
+     <ion-input  formControlName="Composicion"></ion-input>
+    </ion-item>
+
+    
+
+
+    <ion-row class="ion-padding-top">
+      <ion-col>
+        <ion-button type="submit" expand="full" color="success">AGREGAR</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="CANCELAR()" expand="full" color="danger">CANCELAR</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+
+</ion-content>

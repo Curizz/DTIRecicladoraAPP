@@ -1,0 +1,93 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Crear Gastos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="formularioGastos" (ngSubmit)="enviarDatos()">
+    <ion-item>
+      <ion-label position="stacked">Concepto</ion-label>
+     <ion-input   formControlName="Concepto"></ion-input>
+    </ion-item>
+
+    <ion-item [class.invalid]="formularioGastos.get('Monto')?.invalid && formularioGastos.get('Monto')?.touched">
+      <ion-label position="stacked">Monto</ion-label>
+      <ion-input type="number" formControlName="Monto"></ion-input>
+      <!-- Mostrar mensaje de error si el campo es inválido y ha sido tocado -->
+      <ion-text color="danger" *ngIf="formularioGastos.get('Monto')?.invalid && formularioGastos.get('Monto')?.touched">
+        <ion-icon name="alert-circle-outline"></ion-icon>
+        <span *ngIf="formularioGastos.get('Monto')?.errors?.['required']">El monto es obligatorio</span>
+        <span *ngIf="formularioGastos.get('Monto')?.errors?.['noNegativo']">El monto debe ser un valor no negativo</span>
+      </ion-text>
+    </ion-item>
+    
+    
+
+   
+    
+    <ion-item>
+      <ion-label position="stacked">Descripción</ion-label>
+     <ion-input typer="text"  formControlName="Descripcion"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Periodo</ion-label>
+     <ion-input typer="text"  formControlName="Periodo"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Tipo de Gasto</ion-label>
+      <ion-select formControlName="Tipo">
+        <ion-select-option value="0"></ion-select-option>
+        <ion-select-option value="Gasto General">Gasto General</ion-select-option>
+        <ion-select-option value="Gasto Maquinaria">Gasto Maquinaria</ion-select-option>
+        <ion-select-option value="Gasto Nomina">Gasto Nomina</ion-select-option>
+        <ion-select-option value="Gasto Materia Prima">Gasto Materia Prima</ion-select-option>
+        <ion-select-option value="Gasto Servicios">Gasto Servicios</ion-select-option>
+        <ion-select-option value="Gasto Viaticos">Gasto Viaticos</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Área</ion-label>
+      <ion-input readonly  formControlName="areaNombre"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="isMaquinaVisible() && actualizarVisibilidadmaquina() !== null">
+      <ion-label position="stacked">Maquina</ion-label>
+      <ion-select (ionChange)="llenardatos($event)" formControlName="Maquina">
+        <ion-select-option value="0"></ion-select-option>
+        <ion-select-option *ngFor="let maquina of maquina" [value]="maquina.idMaquinaria">{{ maquina.Modelo }}</ion-select-option>
+      </ion-select>
+      <ion-text color="danger" *ngIf="isMaquinaErrorVisible && formularioGastos.get('Maquina')?.hasError('maquinaRequerida')">
+        La máquina es obligatoria cuando está habilitada.
+      </ion-text>
+    </ion-item>
+
+    <ion-item *ngIf="usuarioAdmin && isTipoServicioVisible() !== null">
+      <ion-label position="stacked">Tipo de Servicio</ion-label>
+      <ion-select formControlName="TipoServicio">
+        <ion-select-option value="0"></ion-select-option>
+        <ion-select-option *ngFor="let servicio of servicio" [value]="servicio.idServicio">{{ servicio.NombreServicio }}</ion-select-option>
+      </ion-select> 
+      <ion-text color="danger" *ngIf="formularioGastos.get('TipoServicio')?.hasError('required')">
+        Por favor seleccione un tipo de servicio.
+      </ion-text>
+      <ion-text color="danger" *ngIf="isMaquinaErrorVisible && formularioGastos.get('Maquina')?.hasError('maquinaRequerida') && formularioGastos.get('Tipo')?.value === 'Gasto Servicios' && formularioGastos.get('Maquina')?.value">
+        La máquina es obligatoria cuando está habilitada.
+      </ion-text>
+    </ion-item>
+    
+  
+  
+  
+    <ion-row class="ion-padding-top">
+      <ion-col>
+        <ion-button type="submit" expand="full" color="success">AGREGAR</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="CANCELAR()" expand="full" color="danger">CANCELAR</ion-button>
+      </ion-col>
+    </ion-row>
+
+  </form>
+</ion-content>

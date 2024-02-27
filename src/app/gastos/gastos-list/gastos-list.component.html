@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Gastos</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-col size="6" size-md="3">
+    <ion-button expand="full" color="primary"  (click)="crearRegistro();">AGREGAR</ion-button>
+  </ion-col>
+
+  
+
+  <div class="table-container"  >
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Estado</th>
+          <th>Concepto</th>
+          <th>Monto</th>
+          <th>Tipo</th>
+          <th>Descripcion</th>
+          <th>Periodo</th>
+         
+          <th>Fecha</th>
+          <th>Usuario Creador</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let element of SolicitudGenerales">
+          <td>{{ element.idGastosFabrica }}</td>
+          <td>
+            <ion-badge [color]="element.Estado === 'Aprobada' ? 'success' : (element.Estado === 'Rechazada' ? 'danger' : 'warning')">
+              {{ element.Estado }}
+            </ion-badge>
+            </td>
+          <td>{{ element.Concepto  }}</td>
+          <td>{{ element.Monto }}</td>
+          <td>{{ element.Tipo }}</td>
+          <td>{{ element.Descripcion }}</td>
+          <td>{{ element.Periodo }}</td>
+          
+          <td>{{ element.FechaCreacion}}</td>
+          <td>{{ element.UsuarioCreador}}</td>
+          <td *ngIf="UsuarioAdmin">
+            <ion-button size="small" color="success" style="--ion-color-base: #80a943;" (click)="Editar(element)">Editar</ion-button>
+            <ion-button size="small" color="danger" (click)="mostrarDialogoDeConfirmacion2(element)">Eliminar</ion-button>
+          </td>
+          
+          <td *ngIf="usuarioTienePermisoSuper">
+            <ion-button size="small" color="success" style="--ion-color-base: #80a943;" (click)="Editar(element)">VER</ion-button>
+          
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+</ion-content>

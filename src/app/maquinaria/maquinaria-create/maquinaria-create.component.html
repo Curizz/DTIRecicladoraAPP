@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registrar nueva máquina</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="formularioMaquina" (ngSubmit)="enviarDatos()">
+    <ion-item>
+      <ion-label position="stacked">Número de máquina</ion-label>
+      <ion-input type="number" min="1" formControlName="Numero"></ion-input>
+      <ion-text color="danger" *ngIf="formularioMaquina?.get('Numero')?.errors?.['required']">
+        El número de la máquina es obligatorio.
+      </ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Modelo de máquina</ion-label>
+      <ion-input formControlName="Modelo"></ion-input>
+      <ion-text color="danger" *ngIf="formularioMaquina?.get('Modelo')?.errors?.['required']">
+        El modelo de la máquina es obligatorio.
+      </ion-text>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Descripción de máquina</ion-label>
+      <ion-textarea formControlName="Descripcion"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Serie de máquina</ion-label>
+      <ion-input formControlName="Serie"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Estado de máquina</ion-label>
+      <ion-select formControlName="Estado">
+        <ion-select-option value="Activo">Activo</ion-select-option>
+        <ion-select-option value="Inactivo">Inactivo</ion-select-option>
+        <ion-select-option value="Mantenimiento">Mantenimiento</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Área de máquina</ion-label>
+      <ion-select formControlName="Area">
+        <ion-select-option *ngFor="let area of areas" [value]="area.idArea">{{ area.NombreArea }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-row class="ion-padding-top">
+      <ion-col>
+        <ion-button type="submit" expand="full" color="success">AGREGAR</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="CANCELAR()" expand="full" color="danger">CANCELAR</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

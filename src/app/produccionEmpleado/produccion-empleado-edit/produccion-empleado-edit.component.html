@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Tiempos de Produccion</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <form [formGroup]="formularioProduccionAreaDetails" (ngSubmit)="enviarDatosActualizar()">    
+      <ion-label>Por favor registra los datos correspondientes </ion-label>
+      <ion-item>
+        <ion-label position="stacked">Fecha Fin</ion-label>
+       <ion-input aria-label="Fecha Fin" required="true" type="date" formControlName="FechaFin"></ion-input>
+       <ion-text color="danger" *ngIf="formularioProduccionAreaDetails?.get('FechaFin')?.invalid && formularioProduccionAreaDetails?.get('FechaFin')?.touched">
+        Debe ingresar una Fecha Fin
+      </ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Maquina</ion-label>
+        <ion-select aria-label="maquina" formControlName="idMaquinaria">
+          <ion-select-option *ngFor="let maquinaria of maquinarias" [value]="maquinaria.idMaquinaria">{{ maquinaria.Modelo }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Insumo</ion-label>
+        <ion-select aria-label="Insumo" formControlName="idInventarioFabrica">
+          <ion-select-option value="0"> </ion-select-option>
+          <ion-select-option *ngFor="let inventarioSalida of inventariosSalida" [value]="inventarioSalida.idInventarioFabrica">{{ inventarioSalida.NombreInsumo }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Unidades de Insumo </ion-label>
+        <ion-input aria-label="Unidades de insumo" required type="number" step="0.01" formControlName="UnidadesInsumo"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Producto Producido</ion-label>
+        <ion-select  aria-label="Producto Producido" formControlName="idProductosalida">       
+          <ion-select-option *ngFor="let productoEntrada of productosEntrada" [value]="productoEntrada.idProductosalida">{{ productoEntrada.nombreProducto }}</ion-select-option>
+        </ion-select>
+      </ion-item>  
+      <ion-item>
+        <ion-label position="stacked">Kg de producción</ion-label>
+        <ion-input arial-label="Kg de Producción" required type="number" step="0.01" formControlName="KgProduccion"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Hora de Inicio</ion-label>
+        <ion-input aria-label="Hora Inicio" required type="time" formControlName="HoraInicio"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Hora de Finalización</ion-label>
+        <ion-input type="time" formControlName="HoraFin"></ion-input>
+      </ion-item>
+<!--
+      <ion-item>
+        <ion-label position="stacked">Turno Usuario</ion-label>
+        <ion-input readonly formControlName="Turno"></ion-input>
+      </ion-item> -->
+      <ion-row class="ion-padding-top">
+        <ion-col>
+          <ion-button type="submit" expand="full" color="success">ACTUALIZAR</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button (click)="CANCELAR()" expand="full" color="danger">CANCELAR</ion-button>
+        </ion-col>
+      </ion-row>
+</form>
+
+
+</ion-content>

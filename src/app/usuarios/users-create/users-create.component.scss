@@ -1,0 +1,13 @@
+// Definir colores para los radios
+$radio-checked-background-color: black;
+$radio-unchecked-border-color: black;
+
+// Aplicar estilos a los radios
+ion-radio {
+  --background: $radio-unchecked-border-color; // Color del contorno del radio
+  --inner-checked-color: $radio-checked-background-color; // Color del marcador de verificación
+}
+
+ion-radio[disabled] {
+  --background: #e0e0e0; // Color de fondo para radios desactivados
+}

@@ -1,0 +1,101 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registros de tiempos de producción</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <!-- Filtro por Serie -->
+  <ion-col size="6" size-md="3">
+    <ion-button expand="full" color="primary" (click)="crearRegistro();">AGREGAR</ion-button>
+  </ion-col>
+
+  <!-- Table Producción en Proceso -->
+  <div class="table-container" *ngIf="ProduccionenProceso.length > 0">
+    <h3>Registros de Producción en Proceso</h3>
+    <table>
+      <!-- Encabezado de la tabla -->
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Usuario</th>
+          <th>Fecha Inicio</th>
+          <th>Fecha Final</th>
+          <th>Hora Inicio</th>
+          <th>Hora Final</th>
+          <th>Insumo</th>
+          <th *ngIf="usuarioTienePermisoSuper">Unidades Insumo</th>
+          <th>Producto</th>
+          <th>Kg Producción</th>
+          <th>Area</th>
+          <th>Accion</th>
+        </tr>
+      </thead>
+      <!-- Cuerpo de la tabla -->
+      <tbody>
+        <tr *ngFor="let element of ProduccionenProceso">
+          <!-- Datos de cada fila -->
+          <td>{{ element.idProduccionArea }}</td>
+          <td>{{ element.UsuarioCreadorNombre }}</td>
+          <td>{{ element.FechaInicio }}</td>
+          <td>{{ element.FechaFin }}</td>
+          <td>{{ element.HoraInicio }}</td>
+          <td>{{ element.HoraFin }}</td>
+          <td>{{ element.NombreInsumo }}</td>
+          <td>{{ element.UnidadesInsumo }}</td>
+          <td>{{ element.nombreProducto }}</td>
+          <td>{{ element.KgProduccion }}</td>
+          <td>{{ element.Area }}</td>
+          <td>
+            <ion-button size="small" color="success" style="--ion-color-base: #80a943;" routerLink="/dashboard/produccion-empleado/produccionEmpleado-edit/{{ element.idProduccionArea }}">Editar</ion-button>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Table Producción Terminada -->
+  <div class="table-container">
+    <h3>Registros de Producción Terminada</h3>
+    <table>
+      <!-- Encabezado de la tabla -->
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Usuario</th>
+          <th>Fecha Inicio</th>
+          <th>Fecha Final</th>
+          <th>Hora Inicio</th>
+          <th>Hora Final</th>
+          <th>Insumo</th>
+          <th *ngIf="usuarioTienePermisoSuper">Unidades Insumo</th>
+          <th>Producto</th>
+          <th>Kg Producción</th>
+          <th>Area</th>
+          <th>Accion</th>
+        </tr>
+      </thead>
+      <!-- Cuerpo de la tabla -->
+      <tbody>
+        <tr *ngFor="let element of Produccion">
+          <!-- Datos de cada fila -->
+          <td>{{ element.idProduccionArea }}</td>
+          <td>{{ element.UsuarioCreadorNombre }}</td>
+          <td>{{ element.FechaInicio }}</td>
+          <td>{{ element.FechaFin }}</td>
+          <td>{{ element.HoraInicio }}</td>
+          <td>{{ element.HoraFin }}</td>
+          <td>{{ element.NombreInsumo }}</td>
+          <td>{{ element.UnidadesInsumo }}</td>
+          <td>{{ element.nombreProducto }}</td>
+          <td>{{ element.KgProduccion }}</td>
+          <td>{{ element.Area }}</td>
+          <td>
+            <button class="btn-details" mat-button routerLink="/dashboard/produccion-empleado/produccionEmpleadoDetails/{{ element.idProduccionArea }}">Ver Detalles</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ion-content>

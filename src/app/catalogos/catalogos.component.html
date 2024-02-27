@@ -1,0 +1,54 @@
+
+<ion-content class="ion-padding">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" class="ion-text-center">
+        <ion-title>CATÁLOGOS</ion-title>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ng-container *ngIf="usuarioTienePermiso">
+        <ion-col size="10"  >
+          <ion-card class="bg-c-purple order-card" routerLink="/dashboard/areas/areas-list">
+            <ion-card-content>
+              <ion-icon name="inventory" slot="end"></ion-icon>
+              <ion-card-title>Áreas</ion-card-title>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <ion-col size="10">
+          <ion-card class="bg-c-purple order-card" routerLink="/dashboard/maquinarias/maquinarias-list">
+            <ion-card-content>
+              <ion-icon name="inventory" slot="end"></ion-icon>
+              <ion-card-title>Maquinaria</ion-card-title>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <ion-col size="10">
+          <ion-card class="bg-c-purple order-card" routerLink="/dashboard/proveedores/proveedores-list">
+            <ion-card-content>
+              <ion-icon name="inventory" slot="end"></ion-icon>
+              <ion-card-title>Proveedores</ion-card-title>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+    <!--
+        <ion-col size="10">
+          <ion-card class="bg-c-purple order-card" routerLink="/dashboard/maquinarias/maquinarias-list">
+            <ion-card-content>
+              <ion-icon name="inventory" slot="end"></ion-icon>
+              <ion-card-title>Proveedores</ion-card-title>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>-->
+  
+        <!-- Agrega más tarjetas según sea necesario -->
+      </ng-container>
+
+      <!-- Agrega más condiciones *ngIf según sea necesario -->
+    </ion-row>
+  </ion-grid>
+</ion-content>

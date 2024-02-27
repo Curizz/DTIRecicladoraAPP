@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Maquinas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+   <!-- Filtro por Serie -->
+   <ion-item>
+    <ion-label position="stacked">Filtrar por Serie</ion-label>
+    <ion-input type="text" (input)="applySerieFilter($event)" placeholder="Ej. 980K-326P"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="stacked">Filtrar por Área</ion-label>
+    <ion-select (ionChange)="applyAreaFilter($event)">
+      <ion-select-option value="">Todos</ion-select-option>
+      <ion-select-option *ngFor="let area of areas" [value]="area.NombreArea">{{ area.NombreArea }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-col size="6" size-md="3">
+    <ion-button expand="full" color="primary" (click)="crearMaquina()">AGREGAR</ion-button>
+  </ion-col>
+<!---Table-->
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Serie</th>
+          <th>Numero</th>
+          <th>Modelo</th>
+          <th>Descripcion</th>
+          <th>Estado</th>
+          <th>Area</th>
+          <th *ngIf="usuarioTienePermisoSuper">Empresa</th>
+          <th>Accion</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let element of Maquina">
+          <td>{{ element.idMaquina }}</td>
+          <td>{{ element.Serie }}</td>
+          <td>{{ element.Numero }}</td>
+          <td>{{ element.Modelo }}</td>
+          <td>{{ element.Descripcion }}</td>
+          <td>
+            <ion-badge [color]="element.Estado === 'Activo' ? 'success' : (element.Estado === 'Inactivo' ? 'danger' : 'warning')">
+              {{ element.Estado }}
+            </ion-badge>
+          </td>
+          <td>{{ element.Area }}</td>
+          <td *ngIf="usuarioTienePermisoSuper">{{ element.Empresa }}</td>
+          <td>
+            <ion-button color="success" (click)="verDetalles(element)">Editar</ion-button>
+            <ion-button color="danger" (click)="mostrarDialogoDeConfirmacion2(element)">Eliminar</ion-button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+</ion-content>

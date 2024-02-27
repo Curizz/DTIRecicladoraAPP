@@ -1,0 +1,67 @@
+.centro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px; // Ajusta la altura según tus necesidades
+}
+
+#entrar {
+  border-radius: 50px !important; // Ajusta el valor según tus necesidades
+  display: block;
+  width: 250px;
+  margin: 20px auto; // Añade un poco de margen en la parte inferior
+  height: 50px;
+  background-color: var(--ion-color-colobarDos);
+}
+
+form{
+  animation: slide 1.1s;
+  animation: show 1s;
+}
+.inputs {
+  border-radius: 50px !important; // Ajusta el radio de los bordes de los inputs
+}
+
+.spinner-verde {
+  --ion-color-primary: #00FF00; // Define el color verde que desees para el spinner
+}
+
+.input-box {
+  position: relative; // Ajusta el posicionamiento relativo
+  display: flex;
+  flex-direction: column; // Ajustamos el contenido para que sea columna
+  align-items: center; // Centramos los elementos horizontalmente
+  margin-top: 20px;
+}
+
+.input-box > input {
+  width: 100%; // Ajustamos el ancho del input al 100%
+  height: 40px;
+  border: 2px solid var(--ion-color-colobarDos);
+  border-radius: 20px;
+  outline: none;
+  font-size: 1rem;
+  padding-left: 20px;
+  transition: .2s;
+}
+
+.input-box > input:focus,
+.input-box > input:valid {
+  border: 2px solid #d6e44b;
+}
+
+.input-box > label {
+  position: absolute; // Ajustamos el posicionamiento absoluto
+  top: -15px; // Ajustamos la posición hacia arriba para que esté más cerca del input
+  left: 20px; // Ajustamos la posición hacia la izquierda para que esté alineado con el input
+  font-size: 14px;
+  color: #616161;
+}
+
+input:focus ~ label,
+input:valid ~ label {
+  color: #d6e44b;
+  font-size: 15px;
+ 
+  padding-inline: 3px;
+}

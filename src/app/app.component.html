@@ -1,3 +1,45 @@
+<!--menu para el rol de usuario-->
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu menuId="menu1" content-id="first-content">
+    <ion-header>
+      <ion-toolbar color="colobar">
+        <ion-title>MENÚ</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle >
+          <ion-item [routerLink]="['/dashboard/tablero']">
+            <ion-icon name="albums-outline" slot="start"></ion-icon>
+            <ion-label>Tablero</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle *ngIf="usuarioTienePermisoAdmin">
+          <ion-item [routerLink]="['/dashboard/catalogos']">
+            <ion-icon name="newspaper-outline" slot="start"></ion-icon>
+            <ion-label>Catalogos</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <!--<ion-menu-toggle>
+          <ion-item [routerLink]="['/dashboard/empresas']">
+            <ion-icon name="" slot="start"></ion-icon>
+          <ion-label>Empresas</ion-label>
+          </ion-item>
+        </ion-menu-toggle>-->
+        <ion-menu-toggle slot="content">
+          <ion-item>
+            <ion-icon name="log-out-outline"></ion-icon>
+            <div
+              class="ion-padding"
+              name="home-outline"
+              (click)="alertaCerrar()"
+            >
+              Cerrar Sesion
+            </div>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="first-content"></ion-router-outlet>
 </ion-app>

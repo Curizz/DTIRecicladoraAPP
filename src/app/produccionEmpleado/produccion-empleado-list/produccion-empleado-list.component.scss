@@ -1,0 +1,16 @@
+.table-container {
+    overflow-y: auto;
+    height: calc(vh - 56px); /* Ajusta la altura según el tamaño de la pantalla y la altura del encabezado */
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    border: 1px solid ;
+    text-align: left;
+    padding: 8px;
+  }
+  

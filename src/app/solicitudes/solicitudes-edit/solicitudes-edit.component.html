@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Solicitudes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="table-container" >
+  <form [formGroup]="formularioSolicitud" (ngSubmit)="enviarDatos()">
+    <ion-item>
+      <ion-label position="stacked">Nombre del Producto</ion-label>
+     <ion-input   formControlName="nombreProducto"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Peso</ion-label>
+     <ion-input  type="number" formControlName="Peso"></ion-input>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label position="stacked">Dimensiones</ion-label>
+     <ion-input  type="" formControlName="Dimensiones"></ion-input>
+    </ion-item>
+      
+    <ion-item>
+      <ion-label position="stacked">Fecha Petición</ion-label>
+     <ion-input  type="date" formControlName="FechaPeticion"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Calibre</ion-label>
+     <ion-input  formControlName="Calibre"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Proveedor</ion-label>
+      <ion-select formControlName="idProveedor">
+        <ion-select-option *ngFor="let proveedor of proveedor" [value]="proveedor.idProveedor">{{ proveedor.NombreProveedor }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Composición</ion-label>
+     <ion-input  formControlName="Composicion"></ion-input>
+    </ion-item>
+    
+    <!--
+    <ion-item *ngIf="usuarioTienePermisoSuper">
+      <ion-label position="stacked">Estado</ion-label>
+      <ion-select formControlName="Estado">
+        <ion-select-option value="Aprobada">Aprobada</ion-select-option>
+        <ion-select-option value="En proceso">En proceso</ion-select-option>
+        <ion-select-option value="Rechazada">Rechazada</ion-select-option>
+        
+      </ion-select>
+    </ion-item>-->
+
+    <ion-item>
+      <ion-label position="stacked">Estado</ion-label>
+      <ion-input readonly formControlName="Estado" [ngClass]="getColorClass(formularioSolicitud.get('Estado')?.value)" ></ion-input>
+    </ion-item>
+
+
+    <ion-row class="ion-padding-top" *ngIf="usuarioTienePermisoSuper">
+      <ion-col>
+        <ion-button  (click)="UPDATEAPROBAR()" expand="full" color="success">APROBAR</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="UPDATERECHAZAR()"expand="full" color="danger">RECHAZAR</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="CANCELAR()" expand="full" color="danger">REGRESAR</ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-padding-top" *ngIf="usuarioTienePermisoDeAdmin">
+      <ion-col>
+        <ion-button type="submit" expand="full" color="success">ACTUALIZAR</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="CANCELAR()" expand="full" color="danger">CANCELAR</ion-button>
+      </ion-col>
+    </ion-row>
+    
+    <ion-row class="ion-padding-top" *ngIf="usuarioesEncargado">
+     
+      <ion-col>
+        <ion-button (click)="CANCELAR()" expand="full" color="danger">REGRESAR</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+
+</ion-content>

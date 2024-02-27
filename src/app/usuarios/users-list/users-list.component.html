@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Usuarios</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-col size="6" size-md="3">
+    <ion-button expand="full" color="primary" (click)="crearUsuarios();">AGREGAR</ion-button>
+  </ion-col>
+  <div class="table-container">
+   
+    <table>
+      <!-- Encabezado de la tabla -->
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Apellido Paterno</th>
+          <th>Apellio Materno</th>
+          <th>Correo</th>
+          <th>Accion</th>
+        </tr>
+      </thead>
+      <!-- Cuerpo de la tabla -->
+      <tbody>
+        <tr *ngFor="let element of users">
+          <!-- Datos de cada fila -->
+          <td>{{ element.idUsuario }}</td>
+          <td>{{ element.Nombre }}</td>
+          <td>{{ element.ApellidoPaterno }}</td>
+          <td>{{ element.ApellidoMaterno }}</td>
+          <td>{{ element.Correo }}</td>
+          <td>
+            <ion-button size="small" color="success" style="--ion-color-base: #80a943;" routerLink="/dashboard/users/users-edit/{{ element.idUsuario }}">Editar</ion-button>
+            <ion-button size="small" color="danger" (click)="mostrarDialogoDeConfirmacion2(element)">Eliminar</ion-button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+
+
+
+</ion-content>

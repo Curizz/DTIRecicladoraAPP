@@ -1,0 +1,35 @@
+<ion-toolbar>
+  <ion-title>Registrar nueva área</ion-title>
+</ion-toolbar>
+
+<ion-content class="ion-padding">
+<form [formGroup]="formularioAreas" (ngSubmit)="enviarDatosActualizar()">
+  <ion-item>
+    <ion-label position="floating">Nombre de Área</ion-label>
+    <ion-input formControlName="NombreArea" type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Descripción de Área</ion-label>
+    <ion-textarea formControlName="DescripcionArea"></ion-textarea>
+  </ion-item>
+  <br>
+  <ion-item>
+    <ion-label>Estado de Área</ion-label>
+    <ion-select formControlName="EstadoArea">
+      <ion-select-option value="Activo">Activo</ion-select-option>
+      <ion-select-option value="Inactivo">Inactivo</ion-select-option>
+      <ion-select-option value="Mantenimiento">Mantenimiento</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-row class="ion-padding-top">
+    <ion-col>
+      <ion-button expand="full" color="success" type="submit">ACTUALIZAR</ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-button expand="full" color="danger" (click)="CANCELAR()">CANCELAR</ion-button>
+    </ion-col>
+  </ion-row>
+</form>
+</ion-content>

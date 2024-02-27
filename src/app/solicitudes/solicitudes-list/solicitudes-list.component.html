@@ -1,0 +1,136 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Solicitudes</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-col size="6" size-md="3">
+    <ion-button expand="full" color="primary"  (click)="crearRegistro();">AGREGAR</ion-button>
+  </ion-col>
+
+  
+
+  <div class="table-container" *ngIf="usuarioTienePermisoSuper" >
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Producto</th>
+          <th>Peso</th>
+          <th>Dimensiones</th>
+          <th>Fecha de Registro</th>
+          <th>Calibre</th>
+          <th>Proveedor</th>
+          <th>Fecha de Aprobación o Rechazo</th>
+          <th>Estado	</th>
+          <th *ngIf="usuarioTienePermisoSuper">Accion </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let element of SolicitudGenerales">
+          <td>{{ element.idSolicitud }}</td>
+          <td>{{ element.nombreProducto  }}</td>
+          <td>{{ element.Peso }}</td>
+          <td>{{ element.Dimensiones }}</td>
+          <td>{{ element.FechaPeticion }}</td>
+          <td>{{ element.Calibre }}</td>
+          <td>{{ element.Proveedor}}</td>
+          <td>{{ element.FechaRecepcion}}</td>
+          <td>
+          <ion-badge [color]="element.Estado === 'Aprobada' ? 'success' : (element.Estado === 'Rechazada' ? 'danger' : 'warning')">
+            {{ element.Estado }}
+          </ion-badge>
+          </td>
+          <td *ngIf="usuarioTienePermisoSuper">
+            <ion-button color="success" (click)="Editar(element)">Ver</ion-button>
+            
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table-container" *ngIf="UsuarioAdmin" >
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Producto</th>
+          <th>Peso</th>
+          <th>Dimensiones</th>
+          <th>Fecha de Registro</th>
+          <th>Calibre</th>
+          <th>Proveedor</th>
+          <th>Fecha de Aprobación o Rechazo</th>
+          <th>Estado	</th>
+          <th *ngIf="UsuarioAdmin">Accion </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let element of SolicitudGenerales">
+          <td>{{ element.idSolicitud }}</td>
+          <td>{{ element.nombreProducto  }}</td>
+          <td>{{ element.Peso }}</td>
+          <td>{{ element.Dimensiones }}</td>
+          <td>{{ element.FechaPeticion }}</td>
+          <td>{{ element.Calibre }}</td>
+          <td>{{ element.Proveedor}}</td>
+          <td>{{ element.FechaRecepcion}}</td>
+          <td>
+          <ion-badge [color]="element.Estado === 'Aprobada' ? 'success' : (element.Estado === 'Rechazada' ? 'danger' : 'warning')">
+            {{ element.Estado }}
+          </ion-badge>
+          </td>
+          <td *ngIf="UsuarioAdmin">
+            <ion-button color="success"(click)="Editar(element)">Editar</ion-button>
+            <ion-button color="danger" (click)="mostrarDialogoDeConfirmacion2(element)">Eliminar</ion-button>
+          </td>
+          
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!--Esto es si es encargado de área-->
+  <div class="table-container"*ngIf="usuarioEsEncargado" >
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Producto</th>
+          <th>Peso</th>
+          <th>Dimensiones</th>
+          <th>Fecha de Registro</th>
+          <th>Calibre</th>
+          <th>Proveedor</th>
+          <th>Fecha de Aprobación o Rechazo</th>
+          <th>Estado	</th>
+          <th *ngIf="UsuarioAdmin">Accion </th>
+          <th *ngIf="usuarioTienePermisoSuper">Accion </th>
+          <th *ngIf="usuarioEsEncargado">Accion </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let element of Solicitud">
+          <td>{{ element.idSolicitud }}</td>
+          <td>{{ element.nombreProducto  }}</td>
+          <td>{{ element.Peso }}</td>
+          <td>{{ element.Dimensiones }}</td>
+          <td>{{ element.FechaPeticion }}</td>
+          <td>{{ element.Calibre }}</td>
+          <td>{{ element.Proveedor}}</td>
+          <td>{{ element.FechaRecepcion}}</td>
+          <td>
+          <ion-badge [color]="element.Estado === 'Aprobada' ? 'success' : (element.Estado === 'Rechazada' ? 'danger' : 'warning')">
+            {{ element.Estado }}
+          </ion-badge>
+          </td>
+          <td *ngIf="usuarioEsEncargado">
+            <ion-button color="success" (click)="VerdetalleEmpleado(element)">Ver Detalles</ion-button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</ion-content>
