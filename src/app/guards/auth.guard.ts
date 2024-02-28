@@ -11,7 +11,6 @@ export class AuthGuard implements CanActivate {
   canActivate(): boolean {
     // Se obtiene el token para saber si inició sesión
     const token = localStorage.getItem('token');
-
     // Si inició sesión, se permite el acceso
     if (token) {
       return true;

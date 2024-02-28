@@ -232,6 +232,28 @@ export class SolicitudesEditComponent  implements OnInit {
     else if(EstadoSolicitud === 'En proceso'){
 
       this.mostrarDialogError1('No se puede actualizar la solictud porque esta en proceso de aprobación');
+    }else{
+      if(this.formularioSolicitud.valid){
+        console.log('este es el formulario', this.formularioSolicitud.value);
+        console.log('este es el id a actualizar',this.idRecibido);
+        this.solicitudService.editarSolicitud2(this.idRecibido,this.formularioSolicitud.value).subscribe(
+          (response)=>{
+            console.log('Respuesta del servidor: ', response);
+            if (response.success === 1) {
+              console.log('Se actualizó correctamente');
+              const controlActualizado = response.data; // Asumiendo que hay datos adicionales en la respuesta
+              console.log('Datos del control actualizado: ', controlActualizado);
+              this.mostrarDialogoAviso(controlActualizado.Mensaje);
+            } else {
+             console.error('Error al actualizar el gasto: ', response.error);
+            }
+          },
+          (error) => {
+            // Manejar errores del servicio aquí7
+            console.error('Error al actualizar el gasto: ', error);
+          }
+        );
+      }
     }
 
   }

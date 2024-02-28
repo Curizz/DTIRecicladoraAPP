@@ -93,7 +93,7 @@ export class GastosEditComponent {
              console.log('Se actualizo correctamente');
              const controlActualizado = response.data;
              console.log('Datos del gasto actualizado: ', controlActualizado);
-             this.mostrarDialogoAviso(response.mensaje);
+             this.mostrarDialogoAviso(response.data);
             } else {
              console.error('Error al actualizar el gasto: ', response.error);
             }

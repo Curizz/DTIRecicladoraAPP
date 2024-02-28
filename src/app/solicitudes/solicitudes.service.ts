@@ -54,6 +54,10 @@ export class SolicitudesService {
     return this.clientService.post(this.API+"?editarSolicitud="+id,datosSolicitud);
 
   }
+  editarSolicitud2(id:any, datosSolicitud:solicitud):Observable<any>{
+    return this.clientService.post(this.API+"?editarSolicitud1="+id,datosSolicitud);
+
+  }
   enviarSolicitud(Estado:any):Observable<any>{
     return this.clientService.get(this.API+"?editarSolicitud="+Estado);
 
